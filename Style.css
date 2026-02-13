@@ -1,9 +1,12 @@
+/* VARIABLES GLOBALES */
 :root {
     --lila-oscuro: #4a148c;
     --lila-principal: #8e24aa;
     --lila-suave: #f9f4fa;
+    --blanco-glass: rgba(255, 255, 255, 0.7);
 }
 
+/* RESET GENERAL */
 body {
     margin: 0;
     padding: 0;
@@ -13,9 +16,11 @@ body {
     overflow-x: hidden;
 }
 
-.font-cursive { font-family: 'Great Vibes', cursive; }
+.font-cursive { 
+    font-family: 'Great Vibes', cursive; 
+}
 
-/* Pantalla de Entrada */
+/* PANTALLA DE BIENVENIDA (OVERLAY) */
 #overlay {
     position: fixed;
     inset: 0;
@@ -40,51 +45,38 @@ body {
     box-shadow: 0 10px 25px rgba(142, 36, 170, 0.3);
 }
 
-/* MARIPOSAS ANIMADAS */
+/* MARIPOSAS ANIMADAS (GIF) */
 .mariposa-vuelo {
-    position: fixed; 
-    width: 80px; /* Ajusta según el tamaño de tu GIF */
-    height: 80px;
-    /* Cambia 'mariposa.gif' por el nombre exacto de tu archivo en assets */
+    position: fixed;
+    width: 60px;
+    height: 60px;
     background: url('assets/mariposa.gif') no-repeat;
-    background-size: contain; 
+    background-size: contain;
     bottom: -100px;
-    z-index: 5; 
-    opacity: 0.9;
-    /* Eliminamos la rotación, ahora solo flota y sube */
-    animation: flotarSubir linear forwards;
+    z-index: 5;
+    opacity: 0.8;
+    animation: volarUp linear forwards;
     pointer-events: none;
 }
 
-@keyframes flotarSubir {
-    0% { 
-        transform: translateY(0) translateX(0); 
-        opacity: 0; 
-    }
-    10% { 
-        opacity: 0.9; 
-    }
-    /* El efecto de bamboleo lateral (flotar) */
-    25% { transform: translateY(-30vh) translateX(20px); }
-    50% { transform: translateY(-60vh) translateX(-20px); }
-    75% { transform: translateY(-90vh) translateX(20px); }
-    100% { 
-        transform: translateY(-120vh) translateX(0); 
-        opacity: 0; 
-    }
+@keyframes volarUp {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    15% { opacity: 0.8; }
+    50% { transform: translateY(-50vh) translateX(30px); }
+    100% { transform: translateY(-120vh) translateX(-30px); opacity: 0; }
 }
 
-/* Contenedor Tipo Celular/PDF */
+/* CONTENEDOR PRINCIPAL TIPO CELULAR */
 .invitation-wrapper {
     max-width: 500px;
-    margin: 0 auto; /* Corregido: '20 auto' no es válido, debe ser '0 auto' */
+    margin: 0 auto;
     background: #ffffff;
-    box-shadow: 0 0 40px rgba(0,0,0,0.05);
+    box-shadow: 0 0 50px rgba(0,0,0,0.05);
 }
 
 .section {
     min-height: 100vh;
-    padding: 40px 25px;
+    padding: 60px 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,88 +85,129 @@ body {
     box-sizing: border-box;
 }
 
-/* PORTADA - CORRECCIÓN DE TEXTO MONTADO */
+/* SECCIÓN PORTADA - CORRECCIÓN DE TEXTO AMONTONADO */
 .pdf-header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px 0;
 }
 
 .big-subtitle {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 300;
     margin: 0;
-    line-height: 2; /* Aumentado para dar espacio */
-    letter-spacing: 2px;
+    line-height: 1.1; /* Espacio entre BABY y Shower */
+    letter-spacing: 3px;
 }
 
 .main-name {
     font-family: 'Great Vibes', cursive;
-    font-size: 8rem; /* Ajustado levemente para mejorar legibilidad en web */
+    font-size: 8rem; 
     color: var(--lila-principal);
-    margin: 25px 0; /* Espacio vertical para que no se monte con lo de arriba/abajo */
-    line-height: 1; /* Asegura que la caligrafía tenga su espacio */
-    text-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+    margin: 30px 0; /* MARGEN VITAL: Evita que choque con lo de arriba y abajo */
+    line-height: 1;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
 }
 
 .parents-text {
     font-size: 1.6rem;
-    margin-top: 10px;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: 400;
 }
 
-/* DATOS Y BOTONES */
+/* TARJETA TIPO GLASS */
+.glass-card {
+    background: var(--blanco-glass);
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding: 30px 20px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+/* FILA DE FECHA */
 .date-row {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    border-top: 3px solid var(--lila-principal);
-    border-bottom: 3px solid var(--lila-principal);
-    margin: 30px 0;
-    padding: 15px 0;
-    width: 100%;
+    gap: 20px;
+    border-top: 2px solid var(--lila-principal);
+    border-bottom: 2px solid var(--lila-principal);
+    margin: 25px 0;
+    padding: 10px 0;
 }
 
-.date-number { 
-    font-size: 6rem; 
-    font-weight: 700;
-    line-height: 1;
-}
+.date-number { font-size: 5.5rem; font-weight: 700; }
+.date-side { font-size: 1.3rem; font-weight: 400; }
 
-.date-side { font-size: 1.5rem; }
-
+/* BOTONES ESTILO PDF */
 .btn-pdf {
     background: var(--lila-principal);
     color: #fff;
     text-decoration: none;
-    padding: 12px 70px;
-    border-radius: 40px;
+    padding: 12px 50px;
+    border-radius: 30px;
     font-weight: bold;
     display: inline-block;
-    font-size: 1.2rem;
-    transition: transform 0.2s;
-    margin-top: 10px;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
 }
 
-.btn-pdf:active { transform: scale(0.95); }
+.btn-pdf:hover {
+    background: var(--lila-oscuro);
+    transform: scale(1.05);
+}
 
-/* CONTADOR */
+/* FORMULARIO DE REGALOS */
+.regalos-box {
+    margin-top: 40px;
+    padding: 15px;
+    width: 100%;
+}
+
+.input-form {
+    width: 90%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    border: 1px solid var(--lila-principal);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    text-align: center;
+}
+
+.input-form:focus {
+    box-shadow: 0 0 10px rgba(142, 36, 170, 0.2);
+}
+
+/* CONTADOR REGRESIVO */
 .timer-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cambiado a 3 para evitar que se apriete */
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
     margin: 30px 0;
 }
 
-.t-unit span { font-size: 2.2rem; font-weight: bold; display: block; line-height: 1; }
+.t-unit span { font-size: 2rem; font-weight: bold; display: block; }
 .t-unit small { font-size: 0.7rem; color: var(--lila-principal); font-weight: bold; }
 
 .label-purple {
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-top: 25px;
+    font-weight: bold;
+    color: var(--lila-principal);
     margin-bottom: 10px;
     display: block;
+    font-size: 1.1rem;
+}
+
+/* AJUSTES PARA MÓVILES PEQUEÑOS */
+@media (max-width: 400px) {
+    .main-name { font-size: 6rem; }
+    .big-subtitle { font-size: 2.8rem; }
+    .date-number { font-size: 4rem; }
 }
